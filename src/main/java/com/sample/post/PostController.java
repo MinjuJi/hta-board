@@ -1,7 +1,6 @@
 package com.sample.post;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +17,10 @@ public class PostController {
 	private final PostService postService;
 	
 	@GetMapping("/list")
-	public String list(Model model) {
+	public String list(@RequestParam(name="page", required=false, defaultValue="0") int page,  Model model) {
 		
-		List<Post> posts = postService.getPosts();
-		model.addAttribute("posts", posts);
+		Page<Post> paging = postService.getPosts(page);
+		model.addAttribute("paging", paging);
 		
 		return "post/list"; // "src/main/resources/templates/post/list.html"
 	}

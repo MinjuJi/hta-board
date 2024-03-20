@@ -1,8 +1,11 @@
 package com.sample.post;
 
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,11 +17,13 @@ public class PostService {
 	private final PostRepository postRepository;
 	
 	/**
-	 * 전체 게시글을 조회해서 반환한다.
+	 * 지정된 페이지에 해당하는 게시글 목록을 조회해서 반환한다.
+	 * @param 조회할 페이지 번호
 	 * @return 전체 게시글 목록
 	 */
-	public List<Post> getPosts(){
-		return postRepository.findAll();
+	public Page<Post> getPosts(int page){
+		Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("id")));
+		return postRepository.findAll(pageable);
 	}
 	
 	/**
