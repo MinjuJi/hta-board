@@ -22,7 +22,7 @@
 				<tbody>
 					<tr th:each="post:${posts}">
 						<td th:text="${post.id}">1</td>
-						<td th:text="${post.title}">연습</td>
+						<td><a th:href="@{/post/detail(id=${post.id})}" th:text="${post.title}">연습</a></td>
 						<td th:text="${post.user.name}">홍길동</td>
 						<td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd')}">2024-03-20</td>
 					</tr>
