@@ -1,6 +1,8 @@
 package com.sample.user;
 
 
+import com.sample.common.BaseDateTimeEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -53,7 +55,7 @@ import lombok.Setter;
 )
 @Getter
 @Setter
-public class User {
+public class User extends BaseDateTimeEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_pk_generator")

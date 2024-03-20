@@ -1,7 +1,6 @@
 package com.sample.post;
 
-import java.time.LocalDateTime;
-
+import com.sample.common.BaseDateTimeEntity;
 import com.sample.user.User;
 
 import jakarta.persistence.Column;
@@ -26,7 +25,7 @@ import lombok.Setter;
 )
 @Getter
 @Setter
-public class Post {
+public class Post extends BaseDateTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_pk_generator")
@@ -51,8 +50,5 @@ public class Post {
 	
 	@Column(nullable = false)
 	private String content;
-	
-	private LocalDateTime createdDate;
-	private LocalDateTime updatedDate;
 	
 }
