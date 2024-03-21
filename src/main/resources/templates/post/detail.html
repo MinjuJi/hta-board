@@ -39,18 +39,18 @@
 					현재 로그인된 사용자의 아이디와 게시글 작성자 아이디가 일치하는 경우 true로 판정하고, 해당 컨텐츠를 출력한다.
 			 -->
 			<div>
-				<a th:href="@{/post/vote}"
+				<a th:href="@{|/post/vote/${post.id}|}"
 					sec:authorize="isAuthenticated()" 
 					class="btn btn-sm btn-success">
 					추천
 				</a>			
-				<a th:href="@{/post/modify}" 
+				<a th:href="@{|/post/modify/${post.id}|}" 
 					sec:authorize="isAuthenticated()" 
 					th:if="${#authentication.principal.username == post.user.username}"
 					class="btn btn-sm btn-warning">
 					수정
 				</a>			
-				<a th:href="@{/post/delete}" 
+				<a th:href="@{|/post/delete/${post.id}|}" 
 					sec:authorize="isAuthenticated()" 
 					th:if="${#authentication.principal.username == post.user.username}"
 					class="btn btn-sm btn-danger">
