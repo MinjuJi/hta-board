@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.sample.user.User;
 import com.sample.user.UserRepository;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -57,6 +58,18 @@ public class PostService {
 		post.setTitle(postForm.getTitle());
 		post.setContent(postForm.getContent());
 		post.setUser(user);
+		
+		postRepository.save(post);
+	}
+
+	/**
+	 * 수정된 정보가 포함된 PostForm과 Post 객체를 전달받아서 게시글 정보를 수정한다.
+	 * @param postForm 수정된 정보가 포함된 객체
+	 * @param post 게시글 번호에 해당하는 수정된 정보가 포함된 객체
+	 */
+	public void updatePost(@Valid PostForm postForm, Post post) {
+		post.setTitle(postForm.getTitle());
+		post.setContent(postForm.getContent());
 		
 		postRepository.save(post);
 	}

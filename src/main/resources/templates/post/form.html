@@ -4,7 +4,9 @@
 		<div class="col-12">
 			<h1>게시글 등록폼</h1>
 			
-			<form class="border bg-light p-3" method="post" th:action="@{/post/create}" th:object="${postForm}">
+			
+			<!-- <form th:action="URL 경로">를 지정하지 않은 경우 th:action 속성값은 주소창의 URL 경로가 된다. -->
+			<form class="border bg-light p-3" method="post" th:object="${postForm}">
 				<div class="form-group mb-3">
 					<label class="form-label">제목</label>
 					<input type="text" th:field="*{title}" class="form-control" />
