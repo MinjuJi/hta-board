@@ -38,7 +38,7 @@
 				th:if="${#authentication.principal.username == post.user.username}"
 					현재 로그인된 사용자의 아이디와 게시글 작성자 아이디가 일치하는 경우 true로 판정하고, 해당 컨텐츠를 출력한다.
 			 -->
-			<div>
+			<div class="text-end">
 				<a th:href="@{|/post/vote/${post.id}|}"
 					sec:authorize="isAuthenticated()" 
 					class="btn btn-sm btn-success">
