@@ -1,6 +1,7 @@
 package com.sample.post;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,5 +32,13 @@ public class PostController {
 		model.addAttribute("post", post);
 		
 		return "post/detail"; // "src/main/resources/templates/post/detail.html"
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/create")
+	public String form(Model model) {
+		model.addAttribute("postForm", new PostForm());
+		
+		return "post/form"; // "src/main/resources/templates/post/form.html"
 	}
 }

@@ -1,0 +1,25 @@
+<html layout:decorate="~{layout/base}">
+<div layout:fragment="content" class="container my-3">
+	<div class="row mb-3">
+		<div class="col-12">
+			<h1>게시글 등록폼</h1>
+			
+			<form class="border bg-light p-3" method="post" th:action="@{/post/create}" th:object="${postForm}">
+				<div class="form-group mb-3">
+					<label class="form-label">제목</label>
+					<input type="text" th:field="*{title}" class="form-control" />
+					<div th:errors="*{title}" class="text-danger"></div>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">내용</label>
+					<textarea row="5" th:field="*{content}" class="form-control" ></textarea>
+					<div th:errors="*{content}" class="text-danger"></div>
+				</div>
+				<div class="text-end">
+					<button type="submit" class="btn btn-primary">등록</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</html>
