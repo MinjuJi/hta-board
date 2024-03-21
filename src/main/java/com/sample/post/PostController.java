@@ -1,13 +1,18 @@
 package com.sample.post;
 
+import java.security.Principal;
+
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -40,5 +45,17 @@ public class PostController {
 		model.addAttribute("postForm", new PostForm());
 		
 		return "post/form"; // "src/main/resources/templates/post/form.html"
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/create")
+	public String create(@Valid PostForm postForm, BindingResult errors, Principal principal) {
+		if(errors.hasErrors()) {
+			return "post/form";
+		}
+		
+		postService.createPost(postForm, principal.getName());
+		
+		return "redirect:/post/list";
 	}
 }
