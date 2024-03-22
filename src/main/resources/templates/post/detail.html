@@ -63,5 +63,24 @@
 			</div>
 		</div>		
 	</div>
+	
+	<!-- 댓글 목록 및 작성폼 -->
+	<div class="row mb-3">
+		<div class="col-12">
+			<!-- 댓글 목록 -->
+			
+			
+			
+			<!-- 댓글 작성품 -->
+			<form sec:authorize="isAuthenticated()" action="border p-3 mb-3" method="post" th:action="@{|/reply/create/${post.id}|}">
+				<div class="row g-3">
+					<div class="col-12 position-relative">
+						<textarea rows="3" class="form-control" name="content"></textarea>
+						<button type="submit" class="btn btn-outline-dark btn-sm position-absolute" style="bottom: 15px; right: 25px;">댓글등록</button>
+					</div>
+				</div>
+			</form>
+		</div>		
+	</div>
 </div>
 </html>
