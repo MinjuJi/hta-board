@@ -24,7 +24,7 @@ public class ReplyService {
 	 * @param postId 게시글번호
 	 * @param username 사용자아이디
 	 */
-	public void createReply(String content, Long postId, String username) {
+	public Reply createReply(String content, Long postId, String username) {
 		Post post = postRepository.findById(postId).orElseThrow();
 		User user = userRepository.findByUsername(username).orElseThrow();
 		
@@ -33,6 +33,6 @@ public class ReplyService {
 		reply.setPost(post);
 		reply.setUser(user);
 		
-		replyRepository.save(reply);
+		return replyRepository.save(reply);
 	}
 }

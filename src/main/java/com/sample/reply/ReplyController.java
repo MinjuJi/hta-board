@@ -31,8 +31,8 @@ public class ReplyController {
 	@PostMapping("/create/{postId}")
 	public String create(@PathVariable("postId") Long postId, @RequestParam("content") String content, Principal principal) {
 		
-		replyService.createReply(content, postId, principal.getName());
+		Reply reply = replyService.createReply(content, postId, principal.getName());
 		
-		return String.format("redirect:/post/detail?id=%d", postId);
+		return String.format("redirect:/post/detail?id=%d#reply_%d", postId, reply.getId());
 	}
 }
