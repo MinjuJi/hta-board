@@ -55,6 +55,13 @@ public class Post extends BaseDateTimeEntity {
 	@Column(nullable = false)
 	private String content;
 	
+	/*
+	 * mappedBy = "post"
+	 * 	- 엔티티의 "post" 속성을 기반으로 게시물(Post)과 게시물 투표자(PostVoter) 사이의 매핑을 수행한다.
+	 * 
+	 * cascade = CascadeType.REMOVE
+	 *  - 부모 엔티티가 삭제될 때 자식 엔티티도 함께 삭제한다.
+	 */
 	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
 	private Set<PostVoter> postVoters;
 }
