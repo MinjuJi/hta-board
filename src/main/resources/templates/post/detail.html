@@ -68,9 +68,23 @@
 	<div class="row mb-3">
 		<div class="col-12">
 			<!-- 댓글 목록 -->
-			
-			
-			
+			<div th:each="reply : ${post.replies}" class="card my-3">
+				<div class="card-body py-1 px-2">
+					<a th:id="|reply_${reply.id}|"></a>
+					<div class="d-flex justify-content-between">
+						<div>
+							<span th:text="${reply.user.name}" class="badge bg-light text-dark">홍길동</span>
+							<span th:text="${#temporals.format(reply.createdDate, 'yyyy년 M월 d일')}" class="badge bg-light text-dark">2024-03-21</span>
+						</div>
+						<div>
+							<a class="btn btn-sm btn-outline-success">추천</a>
+							<a class="btn btn-sm btn-outline-secondary">수정</a>
+							<a class="btn btn-sm btn-outline-secondary">삭제</a>
+						</div>
+					</div>
+					<p th:text="${reply.content}" class="card-text ps-2" style="white-space: pre-line;">안녕하세요 댓글입니다.</p>
+				</div>
+			</div>
 			<!-- 댓글 작성품 -->
 			<form sec:authorize="isAuthenticated()" action="border p-3 mb-3" method="post" th:action="@{|/reply/create/${post.id}|}">
 				<div class="row g-3">
