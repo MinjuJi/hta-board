@@ -47,5 +47,5 @@ public class Reply extends BaseDateTimeEntity{
 	private Post post;
 	
 	@OneToMany(mappedBy = "reply", cascade = CascadeType.REMOVE)
-	private Set<ReplyVoter> replyBoters;
+	private Set<ReplyVoter> replyVoters;
 }

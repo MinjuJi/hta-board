@@ -34,7 +34,7 @@ public class ReplyVoter extends BaseDateTimeEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "reply_id", nullable = false)
-	private User reply;
+	private Reply reply;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
