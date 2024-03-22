@@ -1,13 +1,16 @@
 package com.sample.post;
 
+import java.util.List;
 import java.util.Set;
 
 import com.sample.common.BaseDateTimeEntity;
+import com.sample.reply.Reply;
 import com.sample.user.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,8 +52,7 @@ public class Post extends BaseDateTimeEntity {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false )
-	private User
-	user;
+	private User user;
 	
 	@Column(nullable = false)
 	private String content;
@@ -63,6 +65,9 @@ public class Post extends BaseDateTimeEntity {
 	 * cascade = CascadeType.REMOVE
 	 *  - 부모 엔티티가 삭제될 때 자식 엔티티도 함께 삭제한다.
 	 */
-	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	private Set<PostVoter> postVoters;
+	
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	private List<Reply> replies;
 }
