@@ -26,7 +26,7 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td th:text="${post.content}" colspan="3">내용입니다.</td>
+						<td th:utext="${@markdown.render(post.content)}" colspan="3">내용입니다.</td>
 					</tr>
 				</tbody>
 			</table>
