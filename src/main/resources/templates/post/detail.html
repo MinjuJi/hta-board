@@ -77,9 +77,19 @@
 							<span th:text="${#temporals.format(reply.createdDate, 'yyyy년 M월 d일')}" class="badge bg-light text-dark">2024-03-21</span>
 						</div>
 						<div>
-							<a class="btn btn-sm btn-outline-success">추천</a>
-							<a class="btn btn-sm btn-outline-secondary">수정</a>
-							<a class="btn btn-sm btn-outline-secondary">삭제</a>
+							<a class="btn btn-sm btn-outline-success">
+								추천
+							</a>
+							<a class="btn btn-sm btn-outline-secondary"
+								sec:authorize="isAuthenticated()"
+								th:if="${#authentication.principal.username == reply.user.username}">
+								수정
+							</a>
+							<a class="btn btn-sm btn-outline-secondary"
+								sec:authorize="isAuthenticated()"
+								th:if="${#authentication.principal.username == reply.user.username}">
+								삭제
+							</a>
 						</div>
 					</div>
 					<p th:text="${reply.content}" class="card-text ps-2" style="white-space: pre-line;">안녕하세요 댓글입니다.</p>
