@@ -35,4 +35,12 @@ public class ReplyService {
 		
 		return replyRepository.save(reply);
 	}
+	
+	public Reply getReply(Long replyId) {
+		return replyRepository.findById(replyId).orElseThrow();
+	}
+	
+	public void deleteReply(Reply reply) {
+		replyRepository.delete(reply);
+	}
 }
