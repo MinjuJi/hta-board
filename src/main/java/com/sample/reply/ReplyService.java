@@ -69,4 +69,9 @@ public class ReplyService {
 			replyVoterRepository.delete(voter);
 		}
 	}
+
+	public void modify(Reply reply, String content) {
+		reply.setContent(content);
+	    replyRepository.save(reply);
+	}
 }
