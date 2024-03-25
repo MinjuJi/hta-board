@@ -77,8 +77,10 @@
 							<span th:text="${#temporals.format(reply.createdDate, 'yyyy년 M월 d일')}" class="badge bg-light text-dark">2024-03-21</span>
 						</div>
 						<div>
-							<a class="btn btn-sm btn-outline-success">
+							<a th:href="@{|/reply/vote/${reply.id}|}"
+								class="btn btn-sm btn-outline-success">
 								추천
+								<span class="badge rounded-fill bg-success" th:text="${#sets.size(reply.replyVoters)}"></span>
 							</a>
 							<a class="btn btn-sm btn-outline-secondary"
 								sec:authorize="isAuthenticated()"
